@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoRecycle - E-Waste Management Platform | UN SDG 12</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar hidden" id="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="showPage('dashboard')">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                EcoRecycle
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+                <div class="dropdown">
+                    <a href="#">AI Tools ▾</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-item" onclick="showPage('ai-estimator')">Value Estimator</div>
+                        <div class="dropdown-item" onclick="showPage('ai-battery')">Battery Check</div>
+                        <div class="dropdown-item" onclick="showPage('ai-scan')">Scan & Identify</div>
+                    </div>
+                </div>
+                <a href="#" onclick="showPage('marketplace')">Marketplace</a>
+                <a href="#" onclick="showPage('map')">Map</a>
+                <a href="#" onclick="showPage('rewards')">Rewards</a>
+                <a href="#" onclick="showPage('leaderboard')">Leaderboard</a>
+                <div class="nav-points" id="userPoints">2,500 pts</div>
+                <a href="#" onclick="logout()" style="color: #dc3545;">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Landing Page -->
+    <div id="landingPage">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Turn Your E-Waste Into Impact</h1>
+            <p>Join the movement for responsible consumption and production. Recycle electronics, earn rewards, and save the planet.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-secondary" onclick="showPage('register')">Get Started Free</button>
+                <button class="btn btn-primary" onclick="showPage('login')">Sign In</button>
+            </div>
+        </section>
+
+        <!-- Stats Counter -->
+        <div class="stats">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number" id="co2Counter">0</div>
+                    <div class="stat-label">kg CO₂ Saved</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="wasteCounter">0</div>
+                    <div class="stat-label">kg E-Waste Recycled</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="userCounter">0</div>
+                    <div class="stat-label">Users Served</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Recycle -->
+        <section>
+            <h2 class="section-title">Why Recycle E-Waste?</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">🌱</div>
+                    <h3>Environmental Protection</h3>
+                    <p>Prevent toxic materials from polluting soil and water, protecting ecosystems and wildlife.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">♻️</div>
+                    <h3>Resource Recovery</h3>
+                    <p>Extract valuable materials like gold, silver, and copper for reuse in new products.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌍</div>
+                    <h3>UN SDG 12</h3>
+                    <p>Support responsible consumption and production goals for sustainable development.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section style="background: white;">
+            <h2 class="section-title">How It Works</h2>
+            <div class="grid">
+                <div class="card" style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: #28a745; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; margin: 0 auto 1rem;">1</div>
+                    <h3>Register</h3>
+                    <p>Create your free account in seconds</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: #28a745; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; margin: 0 auto 1rem;">2</div>
+                    <h3>Request Pickup</h3>
+                    <p>Schedule collection at your doorstep</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: #28a745; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; margin: 0 auto 1rem;">3</div>
+                    <h3>Get Verified</h3>
+                    <p>AI verifies and values your items</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="width: 60px; height: 60px; background: #28a745; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: bold; margin: 0 auto 1rem;">4</div>
+                    <h3>Earn Rewards</h3>
+                    <p>Receive points and vouchers</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section>
+            <h2 class="section-title">Platform Features</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">📸</div>
+                    <h3>AI-Powered Scanning</h3>
+                    <p>Instantly identify and value your devices using advanced AI technology.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📍</div>
+                    <h3>Smart Location</h3>
+                    <p>Find nearest recycling bins and authorized centers on interactive map.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🏆</div>
+                    <h3>Gamification</h3>
+                    <p>Earn points, climb leaderboards, compete with friends and win prizes.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔋</div>
+                    <h3>Battery Health</h3>
+                    <p>AI predicts battery life and hazard levels for safe disposal.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🔐</div>
+                    <h3>Blockchain Tracking</h3>
+                    <p>Transparent pickup verification with immutable records.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Impact Dashboard</h3>
+                    <p>Track your environmental contribution in real-time.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section style="background: white;">
+            <h2 class="section-title">What Our Users Say</h2>
+            <div class="grid">
+                <div class="card">
+                    <div style="color: #ffc107; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
+                    <p style="font-style: italic; margin-bottom: 1rem;">"Earned 5000 points in a month! Our college is now #3 on the leaderboard."</p>
+                    <div style="font-weight: bold;">Priya Sharma</div>
+                    <div style="color: #666; font-size: 0.9rem;">College Student</div>
+                </div>
+                <div class="card">
+                    <div style="color: #ffc107; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
+                    <p style="font-style: italic; margin-bottom: 1rem;">"The AI estimator gave me instant value for my old laptop. Process was seamless!"</p>
+                    <div style="font-weight: bold;">Rajesh Kumar</div>
+                    <div style="color: #666; font-size: 0.9rem;">IT Professional</div>
+                </div>
+                <div class="card">
+                    <div style="color: #ffc107; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
+                    <p style="font-style: italic; margin-bottom: 1rem;">"We've recycled 500kg of e-waste using this platform. Highly recommend!"</p>
+                    <div style="font-weight: bold;">Green Society</div>
+                    <div style="color: #666; font-size: 0.9rem;">Environmental NGO</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section style="background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%); color: white; text-align: center; padding: 4rem 2rem;">
+            <h2 style="font-size: 3rem; margin-bottom: 1rem;">Ready to Make a Difference?</h2>
+            <p style="font-size: 1.3rem; margin-bottom: 2rem;">Join thousands recycling responsibly and earning rewards</p>
+            <button class="btn btn-secondary" onclick="showPage('register')" style="padding: 1rem 2rem; font-size: 1.1rem;">Start Recycling Now</button>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p style="font-size: 1.1rem;">&copy; 2025 EcoRecycle. Aligned with UN SDG 12: Responsible Consumption and Production</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact Us</a>
+                <a href="#">About</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Login Page -->
+    <div id="loginPage" class="auth-container hidden">
+        <div class="auth-box">
+            <div class="auth-logo">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <h2 style="text-align: center; margin-bottom: 0.5rem;">Welcome Back</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem;">Sign in to continue recycling</p>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="loginEmail" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="loginPassword" placeholder="••••••••" required>
+            </div>
+            <div class="form-group">
+                <label>Login As</label>
+                <select id="loginRole">
+                    <option value="user">User</option>
+                    <option value="recycler">Recycler</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="login()">Sign In</button>
+            <p style="text-align: center; margin-top: 1.5rem;">
+                Don't have an account? 
+                <a href="#" onclick="showPage('register')" style="color: #28a745; font-weight: 600;">Register</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Register Page -->
+    <div id="registerPage" class="auth-container hidden">
+        <div class="auth-box">
+            <div class="auth-logo">
+                <svg width="80" height="80" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+            </div>
+            <h2 style="text-align: center; margin-bottom: 0.5rem;">Join EcoRecycle</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem;">Start your sustainability journey</p>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" placeholder="+91 98765 43210" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+            <div class="form-group">
+                <label>Account Type</label>
+                <select>
+                    <option>Individual</option>
+                    <option>College/Institution</option>
+                    <option>Organization</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="register()">Create Account</button>
+            <p style="text-align: center; margin-top: 1.5rem;">
+                Already have an account? 
+                <a href="#" onclick="showPage('login')" style="color: #28a745; font-weight: 600;">Sign In</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboardPage" class="hidden">
+        <section>
+            <div class="dashboard-header">
+                <h1>Welcome back, <span id="userName">User</span>! 👋</h1>
+                <p style="color: #666;">Track your environmental impact and manage pickups</p>
+            </div>
+
+            <div class="impact-cards">
+                <div class="impact-card green">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌱</div>
+                    <div class="impact-value">145 kg</div>
+                    <div>CO₂ Saved</div>
+                </div>
+                <div class="impact-card blue">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">📦</div>
+                    <div class="impact-value">28 kg</div>
+                    <div>E-Waste Recycled</div>
+                </div>
+                <div class="impact-card yellow">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏆</div>
+                    <div class="impact-value">2,500</div>
+                    <div>Reward Points</div>
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <h2 style="margin-bottom: 1rem;">Quick Actions</h2>
+                <div class="action-grid">
+                    <button class="action-btn" onclick="showPage('marketplace')">
+                        <div class="action-icon">🛒</div>
+                        <div style="font-weight: 600;">Marketplace</div>
+                    </button>
+                    <button class="action-btn" onclick="showPage('pickup')">
+                        <div class="action-icon">🚚</div>
+                        <div style="font-weight: 600;">Request Pickup</div>
+                    </button>
+                    <button class="action-btn" onclick="showPage('ai-scan')">
+                        <div class="action-icon">📸</div>
+                        <div style="font-weight: 600;">AI Scanner</div>
+                    </button>
+                    <button class="action-btn" onclick="showPage('map')">
+                        <div class="action-icon">📍</div>
+                        <div style="font-weight: 600;">Find Bins</div>
+                    </button>
+                    <button class="action-btn" onclick="showPage('rewards')">
+                        <div class="action-icon">🎁</div>
+                        <div style="font-weight: 600;">Rewards</div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 style="margin-bottom: 1.5rem;">Recent Pickups</h2>
+                <div style="display: grid; gap: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #28a745;">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 50px; height: 50px; background: #d4edda; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">📱</div>
+                            <div>
+                                <div style="font-weight: 600;">iPhone 12</div>
+                                <div style="color: #666; font-size: 0.9rem;">Nov 15, 2025</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <span class="badge badge-success">Completed</span>
+                            <span style="color: #28a745; font-weight: 600;">+500 pts</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #007bff;">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 50px; height: 50px; background: #cfe2ff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">💻</div>
+                            <div>
+                                <div style="font-weight: 600;">Dell Laptop</div>
+                                <div style="color: #666; font-size: 0.9rem;">Nov 18, 2025</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <span class="badge badge-info">In Progress</span>
+                            <span style="color: #007bff; font-weight: 600;">+1,200 pts</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #ffc107;">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="width: 50px; height: 50px; background: #fff3cd; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">🔋</div>
+                            <div>
+                                <div style="font-weight: 600;">Li-ion Batteries (4)</div>
+                                <div style="color: #666; font-size: 0.9rem;">Nov 20, 2025</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <span class="badge badge-warning">Scheduled</span>
+                            <span style="color: #ffc107; font-weight: 600;">+200 pts</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Pickup Request Page -->
+    <div id="pickupPage" class="hidden">
+        <section>
+            <a href="#" onclick="showPage('dashboard')" style="color: #28a745; text-decoration: none; display: inline-block; margin-bottom: 1.5rem;">← Back to Dashboard</a>
+            <div class="form-container">
+                <h1 style="margin-bottom: 2rem;">Request E-Waste Pickup</h1>
+                <div class="form-group">
+                    <label>Device Type</label>
+                    <select id="pickupDevice">
+                        <option value="">Select device type</option>
+                        <option>Smartphone</option>
+                        <option>Laptop</option>
+                        <option>Desktop Computer</option>
+                        <option>Tablet</option>
+                        <option>Battery</option>
+                        <option>Charger/Cable</option>
+                        <option>Monitor/TV</option>
+                        <option>Printer</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" min="1" value="1" id="pickupQuantity">
+                </div>
+                <div class="form-group">
+                    <label>Device Condition</label>
+                    <select id="pickupCondition">
+                        <option>Working</option>
+                        <option>Damaged</option>
+                        <option>Not Working</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Pickup Address</label>
+                    <textarea rows="3" placeholder="Enter your complete address" id="pickupAddress"></textarea>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Preferred Date</label>
+                        <input type="date" id="pickupDate">
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Time</label>
+                        <select id="pickupTime">
+                            <option value="">Select time slot</option>
+                            <option>9:00 AM - 12:00 PM</option>
+                            <option>12:00 PM - 3:00 PM</option>
+                            <option>3:00 PM - 6:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="background: #d4edda; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <div style="display: flex; align-items: start; gap: 1rem;">
+                        <div style="font-size: 2rem;">✅</div>
+                        <div>
+                            <div style="font-weight: 600; color: #155724; margin-bottom: 0.5rem;">Free Pickup Service</div>
+                            <div style="color: #155724;">Our authorized recycler will collect items from your doorstep at no cost</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="schedulePickup()">Schedule Pickup</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- AI Value Estimator -->
+    <div id="aiEstimatorPage" class="hidden">
+        <section>
+            <a href="#" onclick="showPage('dashboard')" style="color: #28a745; text-decoration: none; display: inline-block; margin-bottom: 1.5rem;">← Back to Dashboard</a>
+            <div class="form-container">
+                <h1 style="margin-bottom: 1rem;">AI Device Value Estimator</h1>
+                <p style="color: #666; margin-bottom: 2rem;">Get instant recyclable value and material breakdown for your device</p>
+                
+                <div class="form-group">
+                    <label>Device Type</label>
+                    <select id="estimatorDevice">
+                        <option value="">Select device</option>
+                        <option>Smartphone</option>
+                        <option>Laptop</option>
+                        <option>Desktop</option>
+                        <option>Tablet</option>
+                        <option>Monitor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Brand</label>
+                    <input type="text" placeholder="e.g., Apple, Samsung, Dell" id="estimatorBrand">
+                </div>
+                <div class="form-group">
+                    <label>Model</label>
+                    <input type="text" placeholder="e.g., iPhone 12, MacBook Pro" id="estimatorModel">
+                </div>
+                <div class="form-group">
+                    <label>Condition</label>
+                    <select id="estimatorCondition">
+                        <option>Excellent (Working perfectly)</option>
+                        <option>Good (Minor scratches)</option>
+                        <option>Fair (Some issues)</option>
+                        <option>Poor (Not working)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Upload Device Image (Optional)</label>
+                    <div class="upload-area" onclick="document.getElementById('estimatorImage').click()">
+                        <div class="upload-icon">📸</div>
+                        <div style="font-weight: 600; margin-bottom: 0.5rem;">Click to upload image</div>
+                        <div style="color: #666; font-size: 0.9rem;">AI will analyze the device condition</div>
+                    </div>
+                    <input type="file" id="estimatorImage" style="display: none;" accept="image/*">
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="estimateValue()">Estimate Value</button>
+
+                <div id="estimatorResult" class="ai-result">
+                    <h3 style="margin-bottom: 1.5rem; color: #28a745;">AI Analysis Complete ✅</h3>
+                    <div style="background: white; padding: 2rem; border-radius: 12px; margin-bottom: 1.5rem; text-align: center;">
+                        <div style="font-size: 1rem; color: #666; margin-bottom: 0.5rem;">Estimated Recyclable Value</div>
+                        <div style="font-size: 3rem; font-weight: bold; color: #28a745;">₹1,250</div>
+                        <div style="color: #666; margin-top: 0.5rem;">≈ 1,250 Reward Points</div>
+                    </div>
+                    <h4 style="margin-bottom: 1rem;">Material Breakdown</h4>
+                    <div class="value-breakdown">
+                        <div class="material-item">
+                            <div style="font-weight: 600; color: #333;">🥇 Gold</div>
+                            <div style="color: #666;">0.034g - ₹180</div>
+                        </div>
+                        <div class="material-item">
+                            <div style="font-weight: 600; color: #333;">🥈 Silver</div>
+                            <div style="color: #666;">0.3g - ₹45</div>
+                        </div>
+                        <div class="material-item">
+                            <div style="font-weight: 600; color: #333;">🟤 Copper</div>
+                            <div style="color: #666;">15g - ₹120</div>
+                        </div>
+                        <div class="material-item">
+                            <div style="font-weight: 600; color: #333;">⚫ Aluminum</div>
+                            <div style="color: #666;">25g - ₹80</div>
+                        </div>
+                        <div class="material-item">
+                            <div style="font-weight: 600; color: #333;">🔋 Battery</div>
+                            <div style="color: #666;">Li-ion - ₹350</div>
+                        </div>
+                        <div class="material-item">
+                            <div style="font-weight: 600; color: #333;">📱 Display</div>
+                            <div style="color: #666;">LCD - ₹475</div>
+                        </div>
+                    </div>
+                    <div style="background: #fff3cd; padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
+                        <div style="font-weight: 600; color: #856404; margin-bottom: 0.5rem;">Environmental Impact</div>
+                        <div style="color: #856404; font-size: 0.95rem;">Recycling this device will save approximately 12 kg of CO₂ emissions</div>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;" onclick="showPage('pickup')">Schedule Pickup Now</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- AI Battery Check -->
+    <div id="aiBatteryPage" class="hidden">
+        <section>
+            <a href="#" onclick="showPage('dashboard')" style="color: #28a745; text-decoration: none; display: inline-block; margin-bottom: 1.5rem;">← Back to Dashboard</a>
+            <div class="form-container">
+                <h1 style="margin-bottom: 1rem;">AI Battery Life Prediction</h1>
+                <p style="color: #666; margin-bottom: 2rem;">Check battery health and get hazard rating for safe disposal</p>
+                
+                <div class="form-group">
+                    <label>Battery Type</label>
+                    <select id="batteryType">
+                        <option>Li-ion (Lithium-ion)</option>
+                        <option>Li-Po (Lithium Polymer)</option>
+                        <option>NiMH (Nickel Metal Hydride)</option>
+                        <option>Lead Acid</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Device Type</label>
+                    <input type="text" placeholder="e.g., Smartphone, Laptop, Power Bank" id="batteryDevice">
+                </div>
+                <div class="form-group">
+                    <label>Battery Age (Years)</label>
+                    <input type="number" min="0" max="20" value="2" id="batteryAge">
+                </div>
+                <div class="form-group">
+                    <label>Current Health Status</label>
+                    <select id="batteryHealth">
+                        <option>Excellent (80-100%)</option>
+                        <option>Good (60-80%)</option>
+                        <option>Fair (40-60%)</option>
+                        <option>Poor (Below 40%)</option>
+                        <option>Unknown</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Upload Battery Photo (Optional)</label>
+                    <div class="upload-area" onclick="document.getElementById('batteryImage').click()">
+                        <div class="upload-icon">📸</div>
+                        <div style="font-weight: 600; margin-bottom: 0.5rem;">Click to upload image</div>
+                        <div style="color: #666; font-size: 0.9rem;">AI will detect swelling or damage</div>
+                    </div>
+                    <input type="file" id="batteryImage" style="display: none;" accept="image/*">
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="checkBattery()">Analyze Battery</button>
+
+                <div id="batteryResult" class="ai-result">
+                    <h3 style="margin-bottom: 1.5rem; color: #28a745;">Battery Analysis Complete ✅</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="background: white; padding: 1.5rem; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔋</div>
+                            <div style="font-size: 2rem; font-weight: bold; color: #28a745;">68%</div>
+                            <div style="color: #666;">Remaining Life</div>
+                        </div>
+                        <div style="background: white; padding: 1.5rem; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚠️</div>
+                            <div style="font-size: 2rem; font-weight: bold; color: #ffc107;">Medium</div>
+                            <div style="color: #666;">Hazard Rating</div>
+                        </div>
+                    </div>
+                    <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                        <h4 style="margin-bottom: 1rem;">Health Indicators</h4>
+                        <div style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Charge Capacity</span>
+                                <span style="font-weight: 600;">65%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Physical Condition</span>
+                                <span style="font-weight: 600;">Good</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Safety Level</span>
+                                <span style="font-weight: 600;">Safe</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background: #fff3cd; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                        <h4 style="color: #856404; margin-bottom: 0.5rem;">⚠️ Disposal Recommendation</h4>
+                        <p style="color: #856404; margin-bottom: 1rem;">This battery should be recycled within 6 months. Do not dispose in regular trash.</p>
+                        <ul style="color: #856404; padding-left: 1.5rem;">
+                            <li>Keep in cool, dry place</li>
+                            <li>Avoid extreme temperatures</li>
+                            <li>Do not puncture or disassemble</li>
+                            <li>Use authorized recycling facility</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="showPage('pickup')">Schedule Safe Disposal</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- AI Scan & Identify -->
+    <div id="aiScanPage" class="hidden">
+        <section>
+            <a href="#" onclick="showPage('dashboard')" style="color: #28a745; text-decoration: none; display: inline-block; margin-bottom: 1.5rem;">← Back to Dashboard</a>
+            <div class="form-container">
+                <h1 style="margin-bottom: 1rem;">AI Scan & Identify</h1>
+                <p style="color: #666; margin-bottom: 2rem;">Upload an image and let AI identify the e-waste type and disposal instructions</p>
+                
+                <div class="form-group">
+                    <label>Upload E-Waste Image</label>
+                    <div class="upload-area" onclick="document.getElementById('scanImage').click()">
+                        <div class="upload-icon">📸</div>
+                        <div style="font-weight: 600; margin-bottom: 0.5rem;">Click to upload or drag image</div>
+                        <div style="color: #666; font-size: 0.9rem;">AI will identify device type and components</div>
+                    </div>
+                    <input type="file" id="scanImage" style="display: none;" accept="image/*" onchange="previewScanImage(this)">
+                </div>
+                <div id="imagePreview" style="display: none; margin-bottom: 1.5rem;">
+                    <img id="previewImg" style="width: 100%; max-height: 400px; object-fit: contain; border-radius: 8px;">
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="scanDevice()">Scan & Identify</button>
+
+                <div id="scanResult" class="ai-result">
+                    <h3 style="margin-bottom: 1.5rem; color: #28a745;">AI Identification Complete ✅</h3>
+                    <div style="background: white; padding: 2rem; border-radius: 12px; margin-bottom: 1.5rem; text-align: center;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">💻</div>
+                        <h3 style="margin-bottom: 0.5rem;">Dell Laptop</h3>
+                        <div style="color: #666;">Model: Inspiron 15 3000 Series</div>
+                        <div style="color: #666;">Confidence: 94%</div>
+                    </div>
+                    <div style="background: white; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                        <h4 style="margin-bottom: 1rem;">Detected Components</h4>
+                        <div style="display: grid; gap: 0.75rem;">
+                            <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: #f8f9fa; border-radius: 6px;">
+                                <span>🔋 Li-ion Battery</span>
+                                <span style="color: #28a745; font-weight: 600;">Recyclable</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: #f8f9fa; border-radius: 6px;">
+                                <span>💾 Hard Drive (HDD)</span>
+                                <span style="color: #28a745; font-weight: 600;">Recyclable</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: #f8f9fa; border-radius: 6px;">
+                                <span>🖥️ LCD Display</span>
+                                <span style="color: #28a745; font-weight: 600;">Recyclable</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: #f8f9fa; border-radius: 6px;">
+                                <span>⚙️ Circuit Boards</span>
+                                <span style="color: #28a745; font-weight: 600;">Recyclable</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: #f8f9fa; border-radius: 6px;">
+                                <span>⌨️ Plastic Casing</span>
+                                <span style="color: #28a745; font-weight: 600;">Recyclable</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background: #d4edda; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                        <h4 style="color: #155724; margin-bottom: 1rem;">♻️ Disposal Instructions</h4>
+                        <ol style="color: #155724; padding-left: 1.5rem;">
+                            <li style="margin-bottom: 0.5rem;">Remove battery and store separately</li>
+                            <li style="margin-bottom: 0.5rem;">Wipe all personal data from hard drive</li>
+                            <li style="margin-bottom: 0.5rem;">Keep all components together</li>
+                            <li style="margin-bottom: 0.5rem;">Schedule pickup with authorized recycler</li>
+                            <li>Estimated value: ₹1,200 (1,200 points)</li>
+                        </ol>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%; margin-bottom: 1rem;" onclick="showPage('pickup')">Schedule Pickup</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- E-Waste Map -->
+    <div id="mapPage" class="hidden">
+        <section>
+            <a href="#" onclick="showPage('dashboard')" style="color: #28a745; text-decoration: none; display: inline-block; margin-bottom: 1.5rem;">← Back to Dashboard</a>
+            <div class="map-container">
+                <h1 style="margin-bottom: 1rem;">Find Nearby Recycling Centers</h1>
+                <p style="color: #666; margin-bottom: 1.5rem;">Locate e-waste bins and authorized recyclers in your area</p>
+                
+                <div class="map-filters">
+                    <button class="filter-btn active" onclick="filterMap('all')">All Locations</button>
+                    <button class="filter-btn" onclick="filterMap('bins')">🗑️ E-Waste Bins</button>
+                    <button class="filter-btn" onclick="filterMap('centers')">🏢 Recycling Centers</button>
+                    <button class="filter-btn" onclick="filterMap('battery')">🔋 Battery Disposal</button>
+                    <button class="filter-btn" onclick="filterMap('plastic')">♻️ Plastic Recycling</button>
+                </div>
+
+                <div class="map-placeholder">
+                    <div style="text-align: center;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">🗺️</div>
+                        <div style="font-size: 1.2rem; font-weight: 600; margin-bottom: 0.5rem;">Interactive Map</div>
+                        <div style="color: #999;">Map showing recycling locations in Nagpur, Maharashtra</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 1rem;">Nearby Locations</h3>
+                <div class="location-list">
+                    <div class="location-item">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <h4>🏢 Green Earth Recycling Center</h4>
+                            <span style="color: #28a745; font-weight: 600;">0.8 km</span>
+                        </div>
+                        <p style="color: #666; margin-bottom: 0.5rem;">Sitabuldi, Nagpur - All types of e-waste accepted</p>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge badge-success">Authorized</span>
+                            <span class="badge badge-info">Open Now</span>
+                        </div>
+                        <div style="margin-top: 0.75rem;">
+                            <span style="color: #666;">⏰ Mon-Sat: 9:00 AM - 6:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="location-item">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <h4>🗑️ E-Waste Collection Bin</h4>
+                            <span style="color: #28a745; font-weight: 600;">1.2 km</span>
+                        </div>
+                        <p style="color: #666; margin-bottom: 0.5rem;">Dharampeth Shopping Complex - 24/7 Access</p>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge badge-success">Drop-off Point</span>
+                            <span class="badge badge-info">24/7</span>
+                        </div>
+                    </div>
+                    <div class="location-item">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <h4>🔋 Battery Disposal Center</h4>
+                            <span style="color: #28a745; font-weight: 600;">2.1 km</span>
+                        </div>
+                        <p style="color: #666; margin-bottom: 0.5rem;">Ramdaspeth - Specialized battery recycling</p>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge badge-warning">Battery Only</span>
+                            <span class="badge badge-info">Open Now</span>
+                        </div>
+                        <div style="margin-top: 0.75rem;">
+                            <span style="color: #666;">⏰ Mon-Fri: 10:00 AM - 5:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="location-item">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <h4>🏢 TechCycle Solutions</h4>
+                            <span style="color: #28a745; font-weight: 600;">3.5 km</span>
+                        </div>
+                        <p style="color: #666; margin-bottom: 0.5rem;">Sadar - Corporate e-waste management</p>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <span class="badge badge-success">Authorized</span>
+                            <span class="badge badge-success">Pickup Available</span>
+                        </div>
+                        <div style="margin-top: 0.75rem;">
+                            <span style="color: #666;">⏰ Mon-Sat: 8:00 AM - 7:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Rewards Page -->
+    <div id="rewardsPage" class="hidden">
+        <section>
+            <a href="#" onclick="showPage('dashboard')" style="color: #28a745; text-decoration: none; display: inline-block; margin-bottom: 1.5rem;">← Back to Dashboard</a>
+            <h1 style="margin-bottom: 1rem;">Rewards & Vouchers</h1>
+            <p style="color: #666; margin-bottom: 2rem;">Redeem your points for exciting rewards and contribute to sustainability</p>
+
+            <div style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; text-align: center;">
+                <div style="font-size: 1rem; margin-bottom: 0.5rem;">Your Available Points</div>
+                <div style="font-size: 3.5rem; font-weight: bold;">2,500</div>
+                <div style="margin-top: 1rem; opacity: 0.9;">Keep recycling to earn more rewards!</div>
+            </div>
+
+            <h2 style="margin-bottom: 1.5rem;">Available Rewards</h2>
+            <div class="rewards-grid">
+                <div class="reward-card">
+                    <div class="reward-header">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎁</div>
+                        <div class="reward-points">500 pts</div>
+                        <div>Amazon Voucher</div>
+                    </div>
+                    <div class="reward-body">
+                        <p style="margin-bottom: 1rem;">₹50 Amazon Gift Card</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="redeemReward(500)">Redeem Now</button>
+                    </div>
+                </div>
+
+                <div class="reward-card">
+                    <div class="reward-header">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🛒</div>
+                        <div class="reward-points">1,000 pts</div>
+                        <div>Flipkart Voucher</div>
+                    </div>
+                    <div class="reward-body">
+                        <p style="margin-bottom: 1rem;">₹100 Flipkart Gift Card</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="redeemReward(1000)">Redeem Now</button>
+                    </div>
+                </div>
+
+                <div class="reward-card">
+                    <div class="reward-header">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌳</div>
+                        <div class="reward-points">1,500 pts</div>
+                        <div>Plant a Tree</div>
+                    </div>
+                    <div class="reward-body">
+                        <p style="margin-bottom: 1rem;">We'll plant 5 trees in your name</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="redeemReward(1500)">Redeem Now</button>
+                    </div>
+                </div>
+
+                <div class="reward-card">
+                    <div class="reward-header">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">📱</div>
+                        <div class="reward-points">2,000 pts</div>
+                        <div>Mobile Recharge</div>
+                    </div>
+                    <div class="reward-body">
+                        <p style="margin-bottom: 1rem;">₹200 Mobile Recharge</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="redeemReward(2000)">Redeem Now</button>
+                    </div>
+                </div>
+
+                <div class="reward-card">
+                    <div class="reward-header">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎬</div>
+                        <div class="reward-points">2,500 pts</div>
+                        <div>Movie Tickets</div>
+                    </div>
+                    <div class="reward-body">
+                        <p style="margin-bottom: 1rem;">2 PVR Cinema Tickets</p>
+                        <button class="btn btn-primary" style="width: 100%;" onclick="redeemReward(2500)">Redeem Now</button>
+                    </div>
+                </div>
+
+                <div class="reward-card">
+                    <div class="reward-header">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎧</div>
+                        <div class="reward-points">5,000 pts</div>
+                        <div>Premium Gadget</div>
+                    </div>
+                    <div class="reward-body">
+                        <p style="margin-bottom: 1rem;">Wireless Earbuds</p>
+                        <button class="btn btn-secondary" style="width: 100%;">Need More Points</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Marketplace Page -->
+    <div id="marketplacePage" class="hidden">
+        <section>
+            <a href="#" onclick="showPage('dashboard')" style="color: #28a745; text-decoration: none; display: inline-block; margin-bottom: 1.5rem;">← Back to Dashboard</a>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <div>
+                    <h1 style="margin-bottom: 0.5rem;">Refurbished Electronics Marketplace 🛒</h1>
+                    <p style="color: #666;">Buy pre-loved electronics and give them a second life</p>
+                </div>
+                <button class="btn btn-primary" onclick="showPage('sell-device')">+ List Your Device</button>
+            </div>
+
+            <!-- Search and Filters -->
+            <div style="background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 2rem;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 1rem;">
+                    <input type="text" placeholder="🔍 Search devices..." style="padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px;">
+                    <select style="padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px;">
+                        <option>All Categories</option>
+                        <option>Smartphones</option>
+                        <option>Laptops</option>
+                        <option>Tablets</option>
+                        <option>Monitors</option>
+                        <option>Accessories</option>
+                    </select>
+                    <select style="padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px;">
+                        <option>Price: All</option>
+                        <option>Under ₹5,000</option>
+                        <option>₹5,000 - ₹10,000</option>
+                        <option>₹10,000 - ₹20,000</option>
+                        <option>Above ₹20,000</option>
+                    </select>
+                    <select style="padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px;">
+                        <option>Condition: All</option>
+                        <option>Excellent</option>
+                        <option>Good</option>
+                        <option>Fair</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Marketplace Info Banner -->
+            <div style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                <div style="display: flex; justify-content: space-around; text-align: center;">
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold;">234</div>
+                        <div style="opacity: 0.9;">Active Listings</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold;">1,450</div>
+                        <div style="opacity: 0.9;">Devices Reused</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold;">89%</div>
+                        <div style="opacity: 0.9;">Buyer Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Listings -->
+            <div class="grid">
+                <!-- Product 1 -->
+                <div class="card" style="cursor: pointer; overflow: hidden;" onclick="viewProduct('product1')">
+                    <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; margin: -2rem -2rem 1rem -2rem;">
+                        📱
+                    </div>
+                    <div style="display: flex; justify-content: between; align-items: start; margin-bottom: 0.5rem;">
+                        <h3 style="margin: 0;">iPhone 11</h3>
+                        <span class="badge badge-success">Verified</span>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.75rem;">128GB, White - Battery 82%, Minor scratches on back</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <div style="font-size: 1.8rem; font-weight: bold; color: #28a745;">₹18,500</div>
+                            <div style="color: #999; font-size: 0.85rem; text-decoration: line-through;">MRP: ₹43,900</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="color: #ffc107;">⭐ 4.5</div>
+                            <div style="color: #666; font-size: 0.85rem;">Good Condition</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span class="badge badge-info">Warranty: 3 months</span>
+                        <span class="badge badge-success">Free Delivery</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="event.stopPropagation(); buyProduct('iPhone 11', 18500)">Buy Now</button>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="card" style="cursor: pointer; overflow: hidden;" onclick="viewProduct('product2')">
+                    <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; margin: -2rem -2rem 1rem -2rem;">
+                        💻
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                        <h3 style="margin: 0;">Dell Inspiron 15</h3>
+                        <span class="badge badge-success">Verified</span>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.75rem;">i5 10th Gen, 8GB RAM, 512GB SSD - Keyboard backlight not working</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <div style="font-size: 1.8rem; font-weight: bold; color: #28a745;">₹22,000</div>
+                            <div style="color: #999; font-size: 0.85rem; text-decoration: line-through;">MRP: ₹54,990</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="color: #ffc107;">⭐ 4.3</div>
+                            <div style="color: #666; font-size: 0.85rem;">Good Condition</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span class="badge badge-info">Warranty: 6 months</span>
+                        <span class="badge badge-success">Free Delivery</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="event.stopPropagation(); buyProduct('Dell Inspiron 15', 22000)">Buy Now</button>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="card" style="cursor: pointer; overflow: hidden;" onclick="viewProduct('product3')">
+                    <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; margin: -2rem -2rem 1rem -2rem;">
+                        ⌚
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                        <h3 style="margin: 0;">Apple Watch Series 5</h3>
+                        <span class="badge badge-success">Verified</span>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.75rem;">40mm, GPS - Screen has minor scratches, works perfectly</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <div style="font-size: 1.8rem; font-weight: bold; color: #28a745;">₹12,500</div>
+                            <div style="color: #999; font-size: 0.85rem; text-decoration: line-through;">MRP: ₹34,900</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="color: #ffc107;">⭐ 4.7</div>
+                            <div style="color: #666; font-size: 0.85rem;">Excellent</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span class="badge badge-info">Warranty: 3 months</span>
+                        <span class="badge badge-success">Free Delivery</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="event.stopPropagation(); buyProduct('Apple Watch Series 5', 12500)">Buy Now</button>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="card" style="cursor: pointer; overflow: hidden;" onclick="viewProduct('product4')">
+                    <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; margin: -2rem -2rem 1rem -2rem;">
+                        📷
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                        <h3 style="margin: 0;">Canon EOS 1500D</h3>
+                        <span class="badge badge-success">Verified</span>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.75rem;">18-55mm lens, 8500 shutter count - Excellent working condition</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <div style="font-size: 1.8rem; font-weight: bold; color: #28a745;">₹19,999</div>
+                            <div style="color: #999; font-size: 0.85rem; text-decoration: line-through;">MRP: ₹36,995</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="color: #ffc107;">⭐ 4.8</div>
+                            <div style="color: #666; font-size: 0.85rem;">Excellent</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span class="badge badge-info">Warranty: 6 months</span>
+                        <span class="badge badge-warning">Pickup Only</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="event.stopPropagation(); buyProduct('Canon EOS 1500D', 19999)">Buy Now</button>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="card" style="cursor: pointer; overflow: hidden;" onclick="viewProduct('product5')">
+                    <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; margin: -2rem -2rem 1rem -2rem;">
+                        🖥️
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                        <h3 style="margin: 0;">Samsung 24" Monitor</h3>
+                        <span class="badge badge-success">Verified</span>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.75rem;">Full HD, IPS Panel - Small scratch on bezel, screen perfect</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <div style="font-size: 1.8rem; font-weight: bold; color: #28a745;">₹6,500</div>
+                            <div style="color: #999; font-size: 0.85rem; text-decoration: line-through;">MRP: ₹12,900</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="color: #ffc107;">⭐ 4.6</div>
+                            <div style="color: #666; font-size: 0.85rem;">Good Condition</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span class="badge badge-info">Warranty: 3 months</span>
+                        <span class="badge badge-success">Free Delivery</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="event.stopPropagation(); buyProduct('Samsung 24 Monitor', 6500)">Buy Now</button>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="card" style="cursor: pointer; overflow: hidden;" onclick="viewProduct('product6')">
+                    <div style="width: 100%; height: 200px; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); display: flex; align-items: center; justify-content: center; font-size: 4rem; margin: -2rem -2rem 1rem -2rem;">
+                        🎧
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                        <h3 style="margin: 0;">Sony WH-1000XM4</h3>
+                        <span class="badge badge-success">Verified</span>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 0.75rem;">Noise Cancelling - Earpads replaced, works perfectly</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <div style="font-size: 1.8rem; font-weight: bold; color: #28a745;">₹14,999</div>
+                            <div style="color: #999; font-size: 0.85rem; text-decoration: line-through;">MRP: ₹29,990</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="color: #ffc107;">⭐ 4.9</div>
+                            <div style="color: #666; font-size: 0.85rem;">Excellent</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span class="badge badge-info">Warranty: 3 months</span>
+                        <span class="badge badge-success">Free Delivery</span>
+                    </div>
+                    <button class="btn btn-primary" style="width: 100%;" onclick="event.stopPropagation(); buyProduct('Sony WH-1000XM4', 14999)">Buy Now</button>
+                </div>
+            </div>
+
+            <!-- Benefits Section -->
+            <div style="background: white; padding: 2rem; border-radius: 12px; margin-top: 3rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+                <h2 style="text-align: center; margin-bottom: 2rem;">Why Buy Refurbished?</h2>
+                <div class="grid">
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">💰</div>
+                        <h4>Save Money</h4>
+                        <p style="color: #666;">Save 40-70% compared to new devices</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🌍</div>
+                        <h4>Help Environment</h4>
+                        <p style="color: #666;">Reduce e-waste and carbon footprint</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">✅</div>
+                        <h4>Quality Assured</h4>
+                        <p style="color: #666;">All devices verified and tested</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🛡️</div>
+                        <h4>Warranty Included</h4>
+                        <p style="color: #666;">3-6 months warranty on all items</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Sell Device Page -->
+    <div id="sell-devicePage" class="hidden">
+        <section>
+            <a href="#" onclick="showPage('marketplace')" style="color: #28a745; text-decoration: none; display: inline-block; margin-bottom: 1.5rem;">← Back to Marketplace</a>
+            <div class="form-container">
+                <h1 style="margin-bottom: 1rem;">List Your Device for Sale</h1>
+                <p style="color: #666; margin-bottom: 2rem;">Extend your device's life by selling it to someone who needs it!</p>
+                
+                <div class="form-group">
+                    <label>Device Type</label>
+                    <select id="sellDeviceType">
+                        <option value="">Select device type</option>
+                        <option>Smartphone</option>
+                        <option>Laptop</option>
+                        <option>Tablet</option>
+                        <option>Desktop Computer</option>
+                        <option>Monitor/TV</option>
+                        <option>Camera</option>
+                        <option>Smartwatch</option>
+                        <option>Headphones</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Brand</label>
+                        <input type="text" placeholder="e.g., Apple, Samsung" id="sellBrand">
+                    </div>
+                    <div class="form-group">
+                        <label>Model</label>
+                        <input type="text" placeholder="e.g., iPhone 12" id="sellModel">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Condition</label>
+                    <select id="sellConditionSelect">
+                        <option>Excellent - Like new, no visible defects</option>
+                        <option>Good - Minor wear, fully functional</option>
+                        <option>Fair - Some issues, partially working</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Detailed Description</label>
+                    <textarea rows="4" placeholder="Describe what works, what doesn't, any cosmetic issues, accessories included..." id="sellDetailedDesc"></textarea>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label>Your Asking Price (₹)</label>
+                        <input type="number" min="500" placeholder="e.g., 15000" id="sellAskingPrice">
+                    </div>
+                    <div class="form-group">
+                        <label>Original Price (₹)</label>
+                        <input type="number" placeholder="e.g., 45000" id="sellOriginalPrice">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Upload Device Photos (Up to 5)</label>
+                    <div class="upload-area" onclick="document.getElementById('sellImages').click()">
+                        <div class="upload-icon">📸</div>
+                        <div style="font-weight: 600; margin-bottom: 0.5rem;">Click to upload photos</div>
+                        <div style="color: #666; font-size: 0.9rem;">Clear photos help sell faster</div>
+                    </div>
+                    <input type="file" id="sellImages" style="display: none;" accept="image/*" multiple>
+                </div>
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; cursor: pointer;">
+                        <input type="checkbox" style="margin-right: 0.5rem;" checked>
+                        <span>I agree that buyers can contact me directly</span>
+                    </label>
+                </div>
+                <div style="background: #d4edda; padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <h4 style="color: #155724; margin-bottom: 0.5rem;">✨ Listing Benefits</h4>
+                    <ul style="color: #155724; padding-left: 1.5rem;">
+                        <li>Free listing for 60 days</li>
+                        <li>Get 500 bonus points when device sells</li>
+                        <li>Verified seller badge</li>
+                        <li>Reach thousands of buyers</li>
+                    </ul>
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="submitDeviceListing()">Publish Listing</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Leaderboard Page -->
+    <div id="leaderboardPage" class="hidden">
+        <section>
+            <a href="#" onclick="showPage('dashboard')" style="color: #28a745; text-decoration: none; display: inline-block; margin-bottom: 1.5rem;">← Back to Dashboard</a>
+            <h1 style="margin-bottom: 1rem;">Community Leaderboard 🏆</h1>
+            <p style="color: #666; margin-bottom: 2rem;">Compete with others and climb the ranks by recycling more e-waste</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                <div class="card" style="text-align: center; background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🥇</div>
+                    <div style="font-size: 1.2rem; font-weight: bold;">Your Rank</div>
+                    <div style="font-size: 2.5rem; font-weight: bold; margin-top: 0.5rem;">#47</div>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">♻️</div>
+                    <div style="font-size: 1.2rem; font-weight: bold;">Items Recycled</div>
+                    <div style="font-size: 2.5rem; font-weight: bold; margin-top: 0.5rem; color: #28a745;">12</div>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌍</div>
+                    <div style="font-size: 1.2rem; font-weight: bold;">CO₂ Saved</div>
+                    <div style="font-size: 2.5rem; font-weight: bold; margin-top: 0.5rem; color: #007bff;">145kg</div>
+                </div>
+            </div>
+
+            <div class="leaderboard-table">
+                <div class="leaderboard-header">
+                    <div>Rank</div>
+                    <div>User/Organization</div>
+                    <div>E-Waste (kg)</div>
+                    <div>Points</div>
+                </div>
+                <div class="leaderboard-row">
+                    <div><span class="rank-badge rank-1">1</span></div>
+                    <div>
+                        <div style="font-weight: 600;">VNIT Nagpur</div>
+                        <div style="font-size: 0.85rem; color: #666;">Institution</div>
+                    </div>
+                    <div style="font-weight: 600; color: #28a745;">2,450 kg</div>
+                    <div style="font-weight: 600;">245,000</div>
+                </div>
+                <div class="leaderboard-row">
+                    <div><span class="rank-badge rank-2">2</span></div>
+                    <div>
+                        <div style="font-weight: 600;">Green Warriors NGO</div>
+                        <div style="font-size: 0.85rem; color: #666;">Organization</div>
+                    </div>
+                    <div style="font-weight: 600; color: #28a745;">1,890 kg</div>
+                    <div style="font-weight: 600;">189,000</div>
+                </div>
+                <div class="leaderboard-row">
+                    <div><span class="rank-badge rank-3">3</span></div>
+                    <div>
+                        <div style="font-weight: 600;">IIM Nagpur</div>
+                        <div style="font-size: 0.85rem; color: #666;">Institution</div>
+                    </div>
+                    <div style="font-weight: 600; color: #28a745;">1,560 kg</div>
+                    <div style="font-weight: 600;">156,000</div>
+                </div>
+                <div class="leaderboard-row">
+                    <div><span class="rank-badge rank-default">4</span></div>
+                    <div>
+                        <div style="font-weight: 600;">TCS Nagpur Office</div>
+                        <div style="font-size: 0.85rem; color: #666;">Corporate</div>
+                    </div>
+                    <div style="font-weight: 600; color: #28a745;">1,240 kg</div>
+                    <div style="font-weight: 600;">124,000</div>
+                </div>
+                <div class="leaderboard-row">
+                    <div><span class="rank-badge rank-default">5</span></div>
+                    <div>
+                        <div style="font-weight: 600;">Amit Patel</div>
+                        <div style="font-size: 0.85rem; color: #666;">Individual</div>
+                    </div>
+                    <div style="font-weight: 600; color: #28a745;">850 kg</div>
+                    <div style="font-weight: 600;">85,000</div>
+                </div>
+                <div class="leaderboard-row" style="background: #fff3cd;">
+                    <div><span class="rank-badge rank-default">47</span></div>
+                    <div>
+                        <div style="font-weight: 600;">You (User) 👈</div>
+                        <div style="font-size: 0.85rem; color: #666;">Individual</div>
+                    </div>
+                    <div style="font-weight: 600; color: #28a745;">28 kg</div>
+                    <div style="font-weight: 600;">2,500</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
